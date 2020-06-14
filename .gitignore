@@ -1,0 +1,9 @@
+obj/
+Temp/
+*.csproj
+.vs/
+*.sln
+.vscode/
+Library/
+Logs/
+Packages/com.renlai.renlib@be479858cc95366d7f094f5d185c8b184afef909/
