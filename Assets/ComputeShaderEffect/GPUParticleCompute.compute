@@ -1,0 +1,38 @@
+﻿#pragma kernel Update
+
+struct Particle
+{
+    float3 position;
+    float scale;
+    float height;
+    float4 color;
+    float4 color2;
+    float translate;
+};
+
+float threshold1;
+float threshold2;
+float threshold3;
+float deltaTime;
+float4 fcolor;
+
+RWStructuredBuffer<Particle> Particles;
+
+//less than 1024
+[numthreads(1024, 1, 1)]
+void Update(uint3 id: SV_DispatchThreadID)
+{
+    float v0 = Particles[id.x].position.y - threshold1;
+    float v1 = max(v0, 0);
+    Particles[id.x].scale = lerp(0, 0.125, min(v1, 1));
+
+    float a0 = Particles[id.x].position.y - threshold2;
+    float a1 = max(a0, 0);
+    Particles[id.x].color = lerp(Particles[id.x].color2, fcolor, min(a1, 1) *0.65);
+
+    float j0 = Particles[id.x].position.y - threshold3;
+    float j1 = max(j0, 0);
+    Particles[id.x].height = lerp(1, 100, min(j1, 50) / 5);
+    Particles[id.x].translate = lerp(0, 50, min(j1, 10) / 2);
+
+}
