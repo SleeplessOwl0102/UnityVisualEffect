@@ -12,7 +12,6 @@ namespace mattatz.Utils
 
     public class GradientTexGen
     {
-
         public static Texture2D Create(Gradient grad, int width = 32, int height = 1)
         {
             var gradTex = new Texture2D(width, height, TextureFormat.ARGB32, false);

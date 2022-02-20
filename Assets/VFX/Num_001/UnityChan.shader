@@ -12,10 +12,10 @@ Shader "Ren/VFX/Num001/SimpleToon"
     
     SubShader
     {
-		Tags { "RenderType" = "Opaque" "RenderPipeline" = "LightweightPipeline" "IgnoreProjector" = "True"}
+		Tags { "RenderType" = "Opaque" "RenderPipeline" = "UniversalPipeline" "IgnoreProjector" = "True"}
         Pass
         {
-			Tags { "RenderType" = "Opaque" "Queue" = "Geometry" "LightMode" = "LightweightForward" }
+			Tags { "RenderType" = "Opaque" "Queue" = "Geometry" "LightMode" = "UniversalForward" }
 
             Cull Back
             ZTest LEqual
@@ -105,7 +105,6 @@ Shader "Ren/VFX/Num001/SimpleToon"
                 combinedColor += falloffU * lightColor;
                 
 				float4 finalColor = float4(combinedColor, diffuseColor.a) * _Color;
-
                 return finalColor;
             }
             ENDHLSL
