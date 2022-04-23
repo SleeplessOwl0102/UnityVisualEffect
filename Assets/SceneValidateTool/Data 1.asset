@@ -17,24 +17,43 @@ MonoBehaviour:
   - m_ID: 0
     m_Name: Hidden root
     m_Depth: -1
+    ComponentRule: []
+    CommonRule: []
   - m_ID: 3
     m_Name: Item 3
     m_Depth: 0
+    ComponentRule: []
+    CommonRule: []
   - m_ID: 1
     m_Name: Item 1
     m_Depth: 0
+    ComponentRule: []
+    CommonRule: []
   - m_ID: 2
     m_Name: Item 2
     m_Depth: 1
+    ComponentRule: []
+    CommonRule: []
   - m_ID: 11
     m_Name: Item 11
     m_Depth: 2
+    ComponentRule: []
+    CommonRule: []
   - m_ID: 5
     m_Name: Item 5
     m_Depth: 2
+    ComponentRule: []
+    CommonRule: []
   - m_ID: 4
     m_Name: Item 4
     m_Depth: 0
+    ComponentRule: []
+    CommonRule: []
   - m_ID: 13
     m_Name: Item 13
     m_Depth: 1
+    ComponentRule: []
+    CommonRule: []
+  references:
+    version: 2
+    RefIds: []
