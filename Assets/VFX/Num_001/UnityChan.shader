@@ -12,25 +12,26 @@ Shader "Ren/VFX/Num001/SimpleToon"
     
     SubShader
     {
-		Tags { "RenderType" = "Opaque" "RenderPipeline" = "UniversalPipeline" "IgnoreProjector" = "True"}
+        Tags { "RenderType" = "Opaque" "RenderPipeline" = "UniversalPipeline" "IgnoreProjector" = "True" }
         Pass
         {
-			Tags { "RenderType" = "Opaque" "Queue" = "Geometry" "LightMode" = "UniversalForward" }
+            Tags { "RenderType" = "Opaque" "Queue" = "Geometry" "LightMode" = "UniversalForward" }
 
             Cull Back
             ZTest LEqual
 
             HLSLPROGRAM
+            //#region  dfdsfsdfds
             
             #pragma target 4.5
             #pragma vertex vert
             #pragma fragment frag
             #include "UnityCG.cginc"
             #include "AutoLight.cginc"
-            
-			// global
-			float _threshold;
-            int _cull; 
+            //#endregion
+            // global
+            float _threshold;
+            int _cull;
 
             // Material parameters
             float4 _Color;
@@ -46,12 +47,12 @@ Shader "Ren/VFX/Num001/SimpleToon"
             
             struct v2f
             {
-                float4 pos: SV_POSITION;
-                float3 normal: TEXCOORD0;
-                float2 uv: TEXCOORD1;
-                float3 eyeDir: TEXCOORD2;
-                float3 lightDir: TEXCOORD3;
-				float3 worldPos: TEXCOORD4;
+                float4 pos : SV_POSITION;
+                float3 normal : TEXCOORD0;
+                float2 uv : TEXCOORD1;
+                float3 eyeDir : TEXCOORD2;
+                float3 lightDir : TEXCOORD3;
+                float3 worldPos : TEXCOORD4;
             };
 
             v2f vert(appdata_base v)
@@ -69,8 +70,7 @@ Shader "Ren/VFX/Num001/SimpleToon"
             }
             void ScreenDoorTransparency(float alpha, float4 screenPos, float2 scaleScreenSize = float2(1, 1))
             {
-                const float4x4 thresholdMatrix =
-                {
+                const float4x4 thresholdMatrix = {
                     1, 9, 3, 11,
                     13, 5, 15, 7,
                     4, 12, 2, 10,
@@ -81,7 +81,7 @@ Shader "Ren/VFX/Num001/SimpleToon"
                 clip(alpha - threshold);
             }
             
-            float4 frag(v2f i): COLOR
+            float4 frag(v2f i) : COLOR
             {
                 // Fade
                 float visibleRange = 1;
@@ -93,18 +93,18 @@ Shader "Ren/VFX/Num001/SimpleToon"
                 
                 // Falloff
                 float normalDotEye = dot(i.normal, i.eyeDir);
-				float falloffU = clamp(1 - abs(normalDotEye), 0.02, 0.98);
-				float4 falloffSamplerColor = FALLOFF_POWER * tex2D(_FalloffSampler, float2(falloffU, 0.25f));
-				float3 combinedColor = lerp(diffuseColor.rgb, falloffSamplerColor.rgb * diffuseColor.rgb, falloffSamplerColor.a);
+                float falloffU = clamp(1 - abs(normalDotEye), 0.02, 0.98);
+                float4 falloffSamplerColor = FALLOFF_POWER * tex2D(_FalloffSampler, float2(falloffU, 0.25f));
+                float3 combinedColor = lerp(diffuseColor.rgb, falloffSamplerColor.rgb * diffuseColor.rgb, falloffSamplerColor.a);
                 
                 // Rimlight
-				float rimlightDot = saturate(0.5 * (dot(i.normal, i.lightDir) + 1.0));
+                float rimlightDot = saturate(0.5 * (dot(i.normal, i.lightDir) + 1.0));
                 falloffU = saturate(rimlightDot * falloffU);
                 falloffU = tex2D(_RimLightSampler, float2(falloffU, 0.25f)).r;
-				float3 lightColor = diffuseColor.rgb * 0.5;
+                float3 lightColor = diffuseColor.rgb * 0.5;
                 combinedColor += falloffU * lightColor;
                 
-				float4 finalColor = float4(combinedColor, diffuseColor.a) * _Color;
+                float4 finalColor = float4(combinedColor, diffuseColor.a) * _Color;
                 return finalColor;
             }
             ENDHLSL
