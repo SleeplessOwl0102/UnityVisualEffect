@@ -39,6 +39,7 @@ namespace YusiangLai.UnityEditor.MenuTreeFramework
 			m_TreeView.AddItem(new MenuTreeViewItem("23214"));
 			m_TreeView.AddItem(new MenuTreeViewItem("23214/fdgsdfg"));
 			m_TreeView.AddItem(new MenuTreeViewItem("23214/erwe"));
+			m_TreeView.AddItem(new MenuTreeViewItem("123", AssetDatabase.LoadAssetAtPath<Object>("Assets/UniversalRenderPipelineGlobalSettings.asset")));
 		}
 
 
@@ -48,16 +49,11 @@ namespace YusiangLai.UnityEditor.MenuTreeFramework
 			{
 
 				EditorGUILayout.BeginVertical(GUILayout.Width(150));
-				{
-					DoToolbar();
-					scrollPosition = EditorGUILayout.BeginScrollView(scrollPosition);
-					{
-						Rect rect = GUILayoutUtility.GetRect(0, 150, 0, 100000);
-						m_TreeView.OnGUI(rect);
-					}
-					EditorGUILayout.EndScrollView();
-				}
-				EditorGUILayout.EndVertical();
+                {
+                    DawTreeviewToolbar();
+                    DrawTreeview();
+                }
+                EditorGUILayout.EndVertical();
 
 				DrawVerticalLine();
 
@@ -65,7 +61,7 @@ namespace YusiangLai.UnityEditor.MenuTreeFramework
 				{
 					if (m_TreeView.HasSelection())
 					{
-						DrawSelectedToolEditor();
+						DrawSelectedItemEditor();
 					}
 				}
 				EditorGUILayout.EndVertical();
@@ -73,7 +69,17 @@ namespace YusiangLai.UnityEditor.MenuTreeFramework
 			EditorGUILayout.EndHorizontal();
 		}
 
-		void DrawSelectedToolEditor()
+        private void DrawTreeview()
+        {
+            scrollPosition = EditorGUILayout.BeginScrollView(scrollPosition);
+            {
+                Rect rect = GUILayoutUtility.GetRect(0, 150, 0, 100000);
+                m_TreeView.OnGUI(rect);
+            }
+            EditorGUILayout.EndScrollView();
+        }
+
+        void DrawSelectedItemEditor()
 		{
 			var temp = m_TreeView.GetSelection();
 
@@ -81,18 +87,15 @@ namespace YusiangLai.UnityEditor.MenuTreeFramework
 			EditorGUILayout.LabelField("Test");
 			if (item.asset != null)
 			{
-				//EditorGUILayout.ObjectField
-				var ss = Editor.CreateEditor(item.asset);
-				ss.OnInspectorGUI();
+				var editor = Editor.CreateEditor(item.asset);
+				editor.OnInspectorGUI();
 			}
 		}
 
 
-		void DoToolbar()
+		void DawTreeviewToolbar()
 		{
 			GUILayout.BeginHorizontal (EditorStyles.toolbar);
-			//GUILayout.Space (100);
-			GUILayout.FlexibleSpace();
 			m_TreeView.searchString = m_SearchField.OnToolbarGUI (m_TreeView.searchString);
 			GUILayout.EndHorizontal();
 		}

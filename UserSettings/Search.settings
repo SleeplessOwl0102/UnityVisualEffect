@@ -7,6 +7,9 @@ onBoardingDoNotAskAgain = true
 showPackageIndexes = false
 showStatusBar = false
 scopes = {
+	"last_search.83F126EB" = "t:Material"
+	"OpenInspectorPreview.83F126EB" = "0"
+	"currentGroup.83F126EB" = "all"
 }
 providers = {
 	find = {
@@ -56,6 +59,7 @@ providers = {
 	}
 }
 recentSearches = [
+	"t:Material"
 ]
 searchItemFavorites = [
 ]
