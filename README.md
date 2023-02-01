@@ -3,10 +3,5 @@
 
 ### 
 
-Video
-
-* https://www.youtube.com/watch?v=Fpk8soLRMAE
-
 Reference
-* animator mesh baking https://github.com/keijiro/Smrvfx/tree/master/Assets
 * model https://assetstore.unity.com/packages/3d/animations/sd-unity-chan-haon-custom-bundle-84992
