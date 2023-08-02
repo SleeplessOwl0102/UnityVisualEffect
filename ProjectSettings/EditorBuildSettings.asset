@@ -6,6 +6,6 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/VFX/Num_001/Num_001_Test.unity
+    path: Assets/VFX/Sci-Fi Box Fade/Num_001_Test.unity
     guid: 4c85f2c7e5ff21843918afb4ba84a715
   m_configObjects: {}
