@@ -12,10 +12,10 @@ EditorUserSettings:
       value: 0701025601565a580c0a097146770a41134f4079797171612b2b1b35b0b73569
       flags: 0
     RecentlyUsedSceneGuid-2:
-      value: 57520c5303070a0c085b0a2442720744454e49722d2e24642f284567e3b7656d
+      value: 54550200060d0c0c5f0a552414250b44404e4c7979297f657e794f60e0e16139
       flags: 0
     RecentlyUsedSceneGuid-3:
-      value: 54550200060d0c0c5f0a552414250b44404e4c7979297f657e794f60e0e16139
+      value: 57520c5303070a0c085b0a2442720744454e49722d2e24642f284567e3b7656d
       flags: 0
     RecentlyUsedScenePath-0:
       value: 224247031146467802031c3704266c1817131d38092e20352e3d5210eded242df6e205e1e63e3a2e1c1aee3114320471e704001fef
@@ -44,3 +44,4 @@ EditorUserSettings:
   m_VCOtherOverlayIcons: 1
   m_VCAllowAsyncUpdate: 0
   m_ArtifactGarbageCollection: 1
+  m_CompressAssetsOnImport: 1
